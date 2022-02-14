@@ -1,0 +1,70 @@
+
+{% extends 'base.html' %}
+
+<title>{% block title %}Contact{% endblock title %}</title>
+
+{% block contactactive %}active{% endblock contactactive %}
+
+{% block body %}
+
+
+  <style>
+    label{
+      font-family: 'Nunito', sans-serif;
+      font-size:0.9rem
+    }
+    .alert{
+      margin-bottom:0.3rem;
+      padding: 0.5rem 0.3rem;
+      height:2.5rem;
+    }
+    .form-control{
+      padding: 0.300rem 0.30rem;
+      font-size:0.8rem;
+    }
+    .textarea{
+      height:50px;
+    }
+    #submit-btn{
+      margin-bottom:2rem;
+    }
+  </style>
+
+  <div class="container col-4 mx-auto">
+      <form action='/contact' method='POST'>
+        {% csrf_token %} 
+          {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}} text-center" role="alert">
+                  <p>{{message}}</p>
+                  <p class="mb-0"></p>
+                </div>
+            {% endfor %}
+          {% endif %}
+                
+          <div class="mb-2 ">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" value='' name='name' class="form-control" id="name" aria-describedby="emailHelp">
+            </div>
+          <div class="mb-2 color">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email"  name='email' placeholder='example@gmail.com' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-2">
+            <label for="phonenumber" class="form-label">Phone number</label>
+            <input type="number" name='number' placeholder='+91' class="form-control" id="phonenumber" >
+          </div>
+          <div class="mb-2">
+            <label for="content" class="form-label">How may I help you?</label>
+              <textarea placeholder=" describe your issue"name="message" id="content" cols="40" rows="2"></textarea>
+          </div>
+          <div class="mb-2a form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+          <button  id ='submit-btn'type="submit" class="btn btn-sm btn-success">Submit</button>
+     
+        </form>
+  </div>
+
+{% endblock body %}
