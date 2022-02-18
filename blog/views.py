@@ -8,3 +8,7 @@ def blog(request):
     blog=Blog.objects.all()
     blog={'blogs':blog}
     return render(request,'blog/blog.html',blog)
+
+
+def blogPost(request,slug):
+    return render(request,'blog/blogpost.html')
