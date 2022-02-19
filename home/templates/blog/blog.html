@@ -25,6 +25,48 @@
    margin-bottom:1.4rem;
     color:black;
  }
+
+ {% comment %} footer {% endcomment %}
+
+ .footer-bg{
+  background-color:#383644;
+}
+.container-fluid{
+  width:97%
+  
+}
+
+h4{
+  color:black;
+  opacity:0.7;
+}
+.social-link{
+  color:#fff;
+  opacity:0.8;
+  padding:10px 10px;
+  margin:0px 20px;
+  font-size:1.3rem
+}
+
+.text-align{
+  text-align:left;
+  font-size:1.1rem;
+  letter-spaceing:1px;
+  
+}
+
+#horizontal-line{
+
+}
+.py-3 {
+  padding-bottom:0px !important;
+}
+.col-md-3 h4{
+  color:#F5DEB3;
+}
+.col-md-3 h6, h5{
+  color:white;
+}
 </style>
 
 {% if blogs %}
@@ -50,3 +92,53 @@
   {% endfor %}
   {% endif %}
 {% endblock body %}
+
+{% block footer %}
+{% comment %} footer {% endcomment %}
+<footer>
+
+  <div class="container-fluid footer-bg">
+      <div class="row text-center justify-content-evenly py-2">
+      <div class="col-md-3 ">
+          <h4>About Us</h4>
+          <h5 class='text-align'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, veniam obcaecati expedita ullam facere impedit. Veritatis dolorum neque minima assumenda quis cumque consequatur expedita unde mollitia dolorem reiciendis, suscipit exercitationem.</h5>
+      </div>
+      <div class="col-md-3 ">
+          <h4>Quick links</h6>
+          <h6>About</h6>
+          <h6>Quick link</h6>
+          <h6>FAQ</h6>
+          <h6>Privacy Policy</h6>
+          <h6>Terms & conditions</h6>
+      </div>
+      <div class="col-md-3 ">
+          <h4>Get in Touch </h4>
+          <h6>
+          Street:  500123, Shankar Market, Gali Sikli Garan, Nabi Karim<br>
+
+          City: Gujrat<br>
+
+          State/province/area: Gujrat<br>
+
+          Phone number  0112345678<br>
+
+          Zip code  110055<br>
+
+          Country calling code  +91<br>
+
+          Country  India
+          </h6>
+      </div>
+      </div>
+      <hr id='horizontal-line'>
+      <div class="col-12 text-center ">
+      <span>
+      <i class=" social-link bi bi-facebook"></i>
+      <i class=" social-link bi bi-whatsapp"></i>
+      <i class=" social-link bi bi-twitter"></i>
+      </span>
+      </div>
+  </div>
+</footer>
+
+{% endblock footer %}

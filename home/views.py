@@ -1,12 +1,17 @@
+from asyncio import constants
+from asyncio.windows_events import NULL
 from django.shortcuts import render
 from django.shortcuts import redirect
 from home.models import Contact
 from home.models import Content
+from blog.models import Blog
 
 from django.contrib import messages
 
+
 # Create your views here.
 
+# home_section
 
 def index(request):
     content=Content.objects.all()
@@ -14,11 +19,12 @@ def index(request):
     return render(request,'home/index.html',param)
 
 
-
+# about_section
 def about(request):
     return render(request,'home/about.html')
 
 
+# contact_section
 def contact(request):
     if request.method=='POST':
         details=Contact.objects.all()
@@ -65,8 +71,18 @@ def contact(request):
 
     return render(request,'home/contact.html')
 
-
+#search_section
 def search(request):
-    return render(request,'home/search.html')  
+    if request.method=='GET':
+        query=request.GET['query']
+        if query:
+            result=Blog.objects.filter(title__icontains=query)
+        if not result:
+            print('not')
+            messages.add_message(request,messages.INFO,'Opps!! result not found please type something else for better response .....')  
+        if query=="":
+            return redirect('homePage')
+        param={'query':result}
+    return render(request,'home/search.html',param)  
     
     
