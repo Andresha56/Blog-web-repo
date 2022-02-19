@@ -11,4 +11,6 @@ def blog(request):
 
 
 def blogPost(request,slug):
-    return render(request,'blog/blogpost.html')
+    blogpost=Blog.objects.filter(slug=slug).first()
+    blog_posts={'allpost':blogpost}
+    return render(request,'blog/blogpost.html',blog_posts)

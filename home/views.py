@@ -49,9 +49,6 @@ def contact(request):
                 messages.add_message(request,messages.ERROR,'Please describe properly !!!')
                 check_error=True
             
-        # values={
-        #     'name':name,'email':email,'number':number, 'message':message   
-        # }
         if check_error!=True:
             contact=Contact(
             name=name,
@@ -67,6 +64,9 @@ def contact(request):
         return render(request,'home/contact.html')
 
     return render(request,'home/contact.html')
-    
+
+
+def search(request):
+    return render(request,'home/search.html')  
     
     

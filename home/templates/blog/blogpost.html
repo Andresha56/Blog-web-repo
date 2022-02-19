@@ -1,0 +1,33 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}blogPosts{% endblock title %}
+
+{% block body %}
+
+<style>
+    .card{
+        margin-bottoM:10rem !important;
+    }
+
+    .card-body h5{
+        color:black;
+    }
+    .card-title{
+        text-align:center;
+        margin-bottom:1rem
+    }
+</style>
+        <div class="card w-90">
+            <div class="card-body">
+            <h5 class="card-title">{{allpost.title}}</h5>
+            <p class="card-text">{{allpost.text}}</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <a href="">By- {{allpost.author}}</a>
+
+            </div>
+        </div>
+{% endblock body %}
+
+

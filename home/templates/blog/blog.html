@@ -21,6 +21,10 @@
     text-decoration:none;
 
   }
+ .card-body h5{
+   margin-bottom:1.4rem;
+    color:black;
+ }
 </style>
 
 {% if blogs %}
@@ -35,7 +39,7 @@
           <div class="card-body">
             <h5 class="card-title">{{blog.title}}</h5>
             <p class="card-text">{{blog.text|truncatechars:300}}</p>
-            <a class='readmore btn btn-sm btn-dark' href="">Read More</a>
+            <a class='readmore btn btn-sm btn-dark' href="/blog/{{blog.slug}}">Read More</a>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <a href="">By-{{blog.author}}</a>
           </div>

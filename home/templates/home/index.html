@@ -54,6 +54,11 @@
             font-weight:500;
            margin-button:5rem
         }
+
+        .card-body h5{
+            margin-bottom:1.4rem;
+             color:black;
+          }
     </style>
 
     <div class="contain">
@@ -78,7 +83,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{contents.title}}</h5>
                   <p class="card-text">{{contents.text|truncatechars:300}}</p>
-                  <button class='btn btn-sm btn-dark' type="submit">Read more</button>
+                  <a class='readmore btn btn-sm btn-dark' href="/blog/{{contents.slug}}">Read More</a>
                   <p class="card-text"><small class="text-muted">Last updated {{contents.time}}</small></p>
                   <a href="">By-{{contents.author}}</a>
                 </div>
