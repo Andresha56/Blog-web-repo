@@ -9,14 +9,21 @@
     }
 
     .container{
-        margin-bottom:10rem !important;
+        margin-bottom:1rem !important;
+    }
+    p{
+      margin-top:20px;
+    margin-left:2rem;
+    font-size:1.2rem;
+
     }
 </style>
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-danger col-8 mx-auto"role="alert">
-                {{message}}
-            </div>
+        <p>
+          {{message}}
+        </p>
+            
         {% endfor %}
     {% endif %}
 

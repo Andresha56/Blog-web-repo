@@ -1,81 +1,193 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% load static %}
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>{% block title %}{% endblock title %}</title>
-    {% comment %} google font {% endcomment %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
-    {% comment %} bootstrap icon link {% endcomment %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
-  </head>
-  <body>
-    <style>
-      .navbar{
-        height: 50px;
-      }
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <title>{% block title %}{% endblock title %}</title>
+  {% comment %} google font {% endcomment %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
+  {% comment %} bootstrap icon link {% endcomment %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
- 
-    </style>
-        <div class="main_container m-1">
-          {% comment %} ---------nav_bar--------- {% endcomment %}
-          <nav class="navbar navbar-expand-lg navbar-dark  p-2 bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Blogger</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}" href="/about">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {% block contactactive %}{% endblock contactactive %} " href="/contact">Contact</a>
-                  </li>
-                  <li class="nav-item ">
-                    <a class="nav-link {% block blogactive %}{% endblock blogactive %} " href="/blog">blog</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <form class="d-flex" method='get'action='/search'>
-                  <input class="form-control me-2" type="search" name='query' placeholder="Search" aria-label="Search">
-                  <button class="btn btn-sm btn-outline-success" type="submit">Search</button>
-                </form>
+</head>
+
+<body>
+  <style>
+    .navbar {
+      height: 50px;
+    }
+
+      {
+      % comment %
+    }
+
+    signup & signin {
+      % endcomment %
+    }
+
+    #signup {
+      margin: 0 10px;
+    }
+
+    .modal-header {
+      padding: 0.5rem 1rem !important;
+
+    }
+
+    .modal-content {
+      width: 90% !important;
+    }
+
+    .form-label {
+      margin-bottom: 0.2rem;
+    }
+  </style>
+  <div class="main_container m-1">
+    {% comment %} ---------nav_bar--------- {% endcomment %}
+    <nav class="navbar navbar-expand-lg navbar-dark  p-2 bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Blogger</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block contactactive %}{% endblock contactactive %} " href="/contact">Contact</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link {% block blogactive %}{% endblock blogactive %} " href="/blog">blog</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" method='get' action='/search'>
+            <input class="form-control me-2" type="search" name='query' placeholder="Search" aria-label="Search">
+            <button class="btn btn-sm btn-outline-success" type="submit">Search</button>
+          </form>
+
+          {% comment %} sign_up_modal and login modal{% endcomment %}
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-dark" id='signup' data-bs-toggle="modal" data-bs-target="#signupp">
+            Signup
+          </button>
+
+          <button type="button" class="btn btn-dark" id='sigin' data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Signin
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="signupp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                  <h5 class="modal-title" id="staticBackdropLabel">signup</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                  <form action="/signup" method='post'>
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                      <label for="user_name" class="form-label">Username</label>
+                      <input type="text" name="username" class="form-control" id="user_name">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="email_address" class="form-label">Email address</label>
+                      <input type="email" name="email" class="form-control" placeholder='example@gmail.com'
+                        id="email_address" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-1">
+                      <label for="Phone_number" class="form-label">Phone Number</label>
+                      <input type="number" name="phone" class="form-control" placeholder='+91' id="Phone_namber">
+                    </div>
+
+                    <div class="mb-1">
+                      <label for="Password" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="password">
+                    </div>
+
+                    <div class="mb-1">
+                      <label for="Re_password2" class="form-label">Reenter password</label>
+                      <input type="password" name="re_password" class="form-control" id="re_password">
+                    </div>
+
+                    <div class="mb-1 form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+
               </div>
             </div>
-          </nav>
-          {% comment %} --------endnav------- {% endcomment %}
-    
-          <h1>{% block heading %}{% endblock heading %}</h1>
-          {% block body %}{% endblock body %}
+          </div>
+        
+      
+        </div>
+      </div>
+  </div>
+  </nav>
 
-        {% block footer %}{% endblock footer %}
-   <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    
-    
-  </body>
+  {% comment %} end_sign_up_Modal {% endcomment %}
+
+  {% comment %} endnavnar {% endcomment %}
+
+  <h1>{% block heading %}{% endblock heading %}</h1>
+  {% block body %}{% endblock body %}
+
+  {% block footer %}{% endblock footer %}
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+
+
+</body>
+
 </html>

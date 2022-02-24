@@ -1,5 +1,6 @@
 from asyncio import constants
 from asyncio.windows_events import NULL
+from django.forms import PasswordInput
 from django.shortcuts import render
 from django.shortcuts import redirect
 from home.models import Contact
@@ -75,14 +76,29 @@ def contact(request):
 def search(request):
     if request.method=='GET':
         query=request.GET['query']
+        if(len(query))>100:
+            messages.add_message(request,messages.INFO,'your search did not match any document, its too long ....')
         if query:
-            result=Blog.objects.filter(title__icontains=query)
-        if not result:
-            print('not')
-            messages.add_message(request,messages.INFO,'Opps!! result not found please type something else for better response .....')  
+            blogTitle=Blog.objects.filter(title__icontains=query)
+            blogContent=Blog.objects.filter(text__icontains=query)
+            result=blogTitle.union(blogContent)
+        if not query:
+            messages.add_message(request,messages.INFO,'Opps!! result  not found please type something else for better response .....')  
         if query=="":
             return redirect('homePage')
         param={'query':result}
     return render(request,'home/search.html',param)  
     
     
+def sign_up(request):
+    if request.method=='POST':
+       username= request.POST['username'],
+       email=request.POST['email'],
+       phone=request.POST['phone'],
+       password=request.POST['password'],
+       repassword=request.POST['re_password']
+        
+        
+    else:
+        print('get method is runing ')
+    return render(request,'home/index.html')
