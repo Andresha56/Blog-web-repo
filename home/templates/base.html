@@ -50,6 +50,13 @@
     .form-label {
       margin-bottom: 0.2rem;
     }
+
+    {% comment %} error_message {% endcomment %}
+
+    .error_msg{
+      color:red;
+      {% comment %} text-align:center; {% endcomment %}
+    }
   </style>
   <div class="main_container m-1">
     {% comment %} ---------nav_bar--------- {% endcomment %}
@@ -96,83 +103,148 @@
 
           {% comment %} sign_up_modal and login modal{% endcomment %}
 
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-dark" id='signup' data-bs-toggle="modal" data-bs-target="#signupp">
-            Signup
-          </button>
+              <!-- Button trigger modal -->
+        <button type="button" class=" p-2 btn btn-sm btn-outline-warning m-1" data-bs-toggle="modal" data-bs-target="#Signup">
+            signup
+        </button>
 
-          <button type="button" class="btn btn-dark" id='sigin' data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Signin
-          </button>
+  <!-- Modal -->
+      <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
 
-          <!-- Modal -->
-          <div class="modal fade" id="signupp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Sign up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-              <div class="modal-content">
+            <div class="modal-body">
 
-                <div class="modal-header">
+              <form action="signup" method='POST' onsubmit="return validationForm()" novalidate>
+                {% csrf_token %}
 
-                  <h5 class="modal-title" id="staticBackdropLabel">signup</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" name="username" placeholder="Please choose a unique username "class="form-control" id="username">
 
-                <div class="modal-body">
-                  <form action="/signup" method='post'>
-                    {% csrf_token %}
-
-                    <div class="mb-3">
-                      <label for="user_name" class="form-label">Username</label>
-                      <input type="text" name="username" class="form-control" id="user_name">
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="email_address" class="form-label">Email address</label>
-                      <input type="email" name="email" class="form-control" placeholder='example@gmail.com'
-                        id="email_address" aria-describedby="emailHelp">
-                    </div>
-
-                    <div class="mb-1">
-                      <label for="Phone_number" class="form-label">Phone Number</label>
-                      <input type="number" name="phone" class="form-control" placeholder='+91' id="Phone_namber">
-                    </div>
-
-                    <div class="mb-1">
-                      <label for="Password" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="password">
-                    </div>
-
-                    <div class="mb-1">
-                      <label for="Re_password2" class="form-label">Reenter password</label>
-                      <input type="password" name="re_password" class="form-control" id="re_password">
-                    </div>
-
-                    <div class="mb-1 form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
-                </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <p>
+                    <div class="error_msg" id="usererror"></div>
+                  </p>
 
                 </div>
 
-              </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" name="email"  placeholder="example@gmail.com"  class="form-control" id="email" aria-describedby="emailHelp">
+
+                  <p>
+                    <div class="error_msg" id="email_error"></div>
+                  </p>
+
+                </div>
+
+                <div class="mb-3">
+                  <label for="passwords" class="form-label">Password</label>
+                  <input type="password"  name="password"  class="form-control" id="passwords">
+
+                  <p>
+                    <div class="error_msg" id="pass_error"></div>
+                  </p>
+
+                </div>
+
+                <div class="mb-3">
+                  <label for="repassword" class="form-label">Reenter Password</label>
+                  <input type="password" name="re_password" class="form-control" id="repassword" >
+
+                  <p>
+                    <div class="error_msg" id="re_pass_error"></div>
+                  </p>
+
+                </div>
+
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
-        
-      
+        </div>
+      </div>  
+
         </div>
       </div>
   </div>
   </nav>
 
+  <script>
+    let userName=document.getElementById('username');
 
+    let email=document.getElementById('email');
+
+    let password=document.getElementById("passwords");
+
+    let Re_password=document.getElementById("repassword");
+
+    flag=1;
+      function validationForm(){
+          {% comment %} username {% endcomment %}
+
+            if(userName.value==""){
+              document.getElementById("usererror").innerHTML='username required !';
+              flag=0;
+            }else if(username.value.length <5){
+              document.getElementById("usererror").innerHTML='username must be 5 digit or more ..'; 
+              flag=0;
+            }else{
+              document.getElementById("usererror").innerHTML='';
+              flag=1;
+            }
+
+          {% comment %} email {% endcomment %}
+            
+          if (email.value==""){
+            document.getElementById("email_error").innerHTML='email required !';
+            flag=0;
+          }else{
+            document.getElementById("email_error").innerHTML="";
+            flag=1;
+          }
+
+          {% comment %} passwoprd {% endcomment %}
+
+          if(password.value==""){
+            document.getElementById("pass_error").innerHTML="passwoprd required";
+            flag=0;
+          }else if(password.value.length<7){
+            document.getElementById("pass_error").innerHTML="passwoprd must be 7 digit long..." ;
+            flag=0;
+          }
+
+          {% comment %} re_password {% endcomment %}
+
+          if(Re_password.value!==password.value){
+            document.getElementById("re_pass_error").innerHTML="passwoprd does not match..." ;
+            flag=0;
+          }else{
+            document.getElementById("re_pass_error").innerHTML=""; 
+            flag=1;
+          }
+        if(flag){
+          return true;
+        }
+          else{
+            return false;
+          }
+      }
+  </script>
   {% comment %} end_sign_up_Modal {% endcomment %}
 
   {% comment %} endnavnar {% endcomment %}

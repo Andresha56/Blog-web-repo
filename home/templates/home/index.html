@@ -103,7 +103,12 @@
         color:white;
       }
     </style>
-
+    {% if messages %}
+        {% for message in messages %}{% endfor %}
+          <div class="alert alert-danger col-11.1" role="alert">
+                  {{message}}
+          </div>      
+      {% endif %}
     <div class="contain">
         <div class="bgimage">
             <div class="content">

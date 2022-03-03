@@ -6,8 +6,12 @@ from django.shortcuts import redirect
 from home.models import Contact
 from home.models import Content
 from blog.models import Blog
+from home. models import Signup
+
 
 from django.contrib import messages
+from django.contrib.auth.models import User
+
 
 
 # Create your views here.
@@ -92,13 +96,17 @@ def search(request):
     
 def sign_up(request):
     if request.method=='POST':
-       username= request.POST['username'],
-       email=request.POST['email'],
-       phone=request.POST['phone'],
-       password=request.POST['password'],
-       repassword=request.POST['re_password']
-        
-        
-    else:
-        print('get method is runing ')
+        print(request.POST['username'])
+        username=request.POST['username']
+        email=request.POST['email']
+        password=request.POST["password"]
+        repassword=request.POST['re_password']
+
+        register_cutomer=Signup(username=username,
+                                email=email,
+                                password=password,
+                                re_password=repassword)
+        register_cutomer.save()      
     return render(request,'home/index.html')
+   
+    
