@@ -103,12 +103,16 @@
 
           {% comment %} sign_up_modal and login modal{% endcomment %}
 
-              <!-- Button trigger modal -->
+              <!--signup Button trigger modal -->
         <button type="button" class=" p-2 btn btn-sm btn-outline-warning m-1" data-bs-toggle="modal" data-bs-target="#Signup">
             signup
         </button>
+              <!--signin Button trigger modal -->
+        <button type="button" class=" p-2 btn btn-sm btn-outline-warning m-1" data-bs-toggle="modal" data-bs-target="#Signin">
+          signin
+      </button>
 
-  <!-- Modal -->
+  <!--  Signup Modal -->
       <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -179,6 +183,54 @@
         </div>
       </div>  
 
+      <!-- signin Modal -->
+        <div class="modal fade" id="Signin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                {% comment %} username {% endcomment %}
+
+              <form action="signin" method='POST' onsubmit="return validationForm()">
+                  {% csrf_token %}
+                <div class="mb-3">
+                  <label for="checkusername" class="form-label">Username</label>
+                  <input type="text" name="checkuser" class="form-control" id="checkuser" >
+                  <p>
+                    <div class="error_msg" id="check_user"></div>
+                  </p>
+
+                </div>
+
+                {% comment %} checkpassward {% endcomment %}
+                <div class="mb-3">
+                  <label for="checkpassward" class="form-label">Password</label>
+                  <input type="password" name="checkpass" class="form-control" id="checkpassward" >
+                  <p>
+                    <div class="error_msg" id="check_pass_error"></div>
+                  </p>
+
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+
+            </div>
+          </form>
+
+          </div>
+        </div>  
+
         </div>
       </div>
   </div>
@@ -244,6 +296,11 @@
             return false;
           }
       }
+
+      {% comment %} check user {% endcomment %}
+      let check_userr=document.getElementById("checkuser")
+      let check_pass=document.getElementById("checkpassward")  
+
   </script>
   {% comment %} end_sign_up_Modal {% endcomment %}
 

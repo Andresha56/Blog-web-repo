@@ -28,7 +28,7 @@
         .content h4{
             color:	#F8F8F8;
             font-family: 'Dongle', sans-serif;
-            font-size:5rem;
+            font-size:7vw;
             letter-spacing: 1px;
             margin-top:7rem;
             text-shadow: 2px 3px 4px #000000;
@@ -102,12 +102,26 @@
       .col-md-3 h6, h5{
         color:white;
       }
+      {% comment %} alert {% endcomment %}
+      .alert {
+        padding: 0.3rem 0.3rem;
+      }
+      .btn-close{
+        height:0;
+      }
+      .alert-dismissible .btn-close{
+        padding: 1rem 0.9rem;
+      }
     </style>
+   
+    {% comment %} error messages {% endcomment %}
     {% if messages %}
-        {% for message in messages %}{% endfor %}
-          <div class="alert alert-danger col-11.1" role="alert">
-                  {{message}}
-          </div>      
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong class="message">{{message}}</strong> 
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>     
+          {% endfor %}
       {% endif %}
     <div class="contain">
         <div class="bgimage">

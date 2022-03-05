@@ -1,5 +1,6 @@
 from asyncio import constants
 from asyncio.windows_events import NULL
+from email import message
 from django.forms import PasswordInput
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -81,7 +82,7 @@ def search(request):
     if request.method=='GET':
         query=request.GET['query']
         if(len(query))>100:
-            messages.add_message(request,messages.INFO,'your search did not match any document, its too long ....')
+            messages.add_message(request,messages.INFO,f'your search {query} did not match any document, its too long ....')
         if query:
             blogTitle=Blog.objects.filter(title__icontains=query)
             blogContent=Blog.objects.filter(text__icontains=query)
@@ -109,4 +110,33 @@ def sign_up(request):
         register_cutomer.save()      
     return render(request,'home/index.html')
    
-    
+
+def sigin_in(request):
+    if request.method=='POST':
+        user=request.POST['checkuser']
+        password=request.POST['checkpass']
+        flag=0
+
+        # username
+        try:
+            checkuser=Signup.getuser_by_email(user)
+            flag=1
+        except Exception as a:
+            flag=0
+        # password
+        try:
+            checkpassword=Signup.getuser_by_password(password)
+            flag=1
+        except Exception as a:
+            flag=0
+        
+        # controller
+        if flag==1:
+            messages.add_message(request,messages.SUCCESS,f'Hellow  {user} welcome to blogger')
+            return redirect('homePage')
+        elif flag==0:
+            messages.add_message(request,messages.ERROR,'username or password does not matched..')
+
+    return render(request,'home/index.html')
+
+
