@@ -93,8 +93,8 @@ def search(request):
             return redirect('homePage')
         param={'query':result}
     return render(request,'home/search.html',param)  
-    
-    
+
+# signup_section  
 def sign_up(request):
     if request.method=='POST':
         print(request.POST['username'])
@@ -108,9 +108,9 @@ def sign_up(request):
                                 password=password,
                                 re_password=repassword)
         register_cutomer.save()      
-    return render(request,'home/index.html')
+    return redirect('homePage')
    
-
+#sign_up_section
 def sigin_in(request):
     if request.method=='POST':
         user=request.POST['checkuser']
